@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求出数组中所有数字的和</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 0 auto;
+        }
+        label>span{
+            font-size: 14px;
+            color: #999;
+            line-height: 30px;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        label>input{
+            font-size: 14px;
+            width: 300px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #999;
+        }
+        button{
+            display: block;
+            font-size: 14px;
+            width: 40px;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .result{
+            color: red;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <label>
+        <input type="text" value="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18">
+        <span>输入数字求和，数字之间用空格隔开</span>
+    </label>
+    <button>求和</button>
+    <div class="result"></div>
+</div>
+<script>
+    window.onload = function () {
+        var inputs = document.getElementsByTagName("input");
+        var btns = document.getElementsByTagName("button");
+        var res = document.getElementsByClassName("result");
+        btns[0].onclick = function () {
+            var str = inputs[0].value.split(" ");
+            var result = 0;
+            var num = [];
+            for (var i = 0; i < str.length; i++){
+                num.push(Number(str[i]));
+                result += num[i];
+            }
+            res[0].innerHTML = result;
+        }
+    }
+</script>
+</body>
+</html>

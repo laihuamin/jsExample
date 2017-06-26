@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易JS年历</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 300px;
+            margin: 0 auto;
+            background: #eaeaea;
+            padding: 10px;
+        }
+        ul{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        ul>li{
+            flex-basis: 70px;
+            height: 70px;
+            background: #424242;
+            margin: 5px 0 5px 0;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            line-height: 35px;
+            border: 1px solid black;
+        }
+        .current{
+            background: white;
+            color: #f69;
+        }
+        .content{
+            background: #f1f1f1;
+            border: 1px solid white;
+            font-size: 14px;
+            color: #666;
+            padding: 10px;
+        }
+        .content>h2{
+            line-height: 30px;
+        }
+        .content>p{
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li><strong>1</strong><br/>JAN</li>
+        <li><strong>2</strong><br/>FER</li>
+        <li><strong>3</strong><br/>MAR</li>
+        <li><strong>4</strong><br/>APR</li>
+        <li><strong>5</strong><br/>MAY</li>
+        <li class="current"><strong>6</strong><br/>JUN</li>
+        <li><strong>7</strong><br/>JUL</li>
+        <li><strong>8</strong><br/>AUG</li>
+        <li><strong>9</strong><br/>SEP</li>
+        <li><strong>10</strong><br/>OCT</li>
+        <li><strong>11</strong><br/>NOV</li>
+        <li><strong>12</strong><br/>DEC</li>
+    </ul>
+    <div class="content">
+        <h2>
+            <strong>6</strong>月节日
+        </h2>
+        <p>端午节：6月4日至6日放假3天。</p>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var lis = document.getElementsByTagName("li");
+        var con = document.getElementsByClassName("content")[0];
+        var str = con.getElementsByTagName("strong")[0];
+        var pCon = con.getElementsByTagName("p")[0];
+        var oArray = [
+            "元旦：1月1日至3日放假三天。",
+            "春节：2月2日至8日放假7天。",
+            "妇女节：3月8日妇女节，与我无关。",
+            "清明节：4月3日至5日放假3天",
+            "劳动节：4月30日至5月2日放假3天。",
+            "端午节：6月4日至6日放假3天。",
+            "小暑：7月7日小暑。不放假。",
+            "七夕节：8月6日七夕节。不放假。",
+            "中秋节：9月10日至12日放假3天。",
+            "国庆节：10月1日至7日放假7天。",
+            "立冬：11月8日立冬。不放假。",
+            "艾滋病日:12月1日\n废除奴隶制国际日:12月2日。"
+        ];
+        for (var i = 0;i < lis.length;i++) {
+            lis[i].index = i;
+            lis[i].onmouseover = function () {
+                for ( var n = 0;n < lis.length; n++) {
+                    lis[n].className = "";
+                }
+                this.className = "current";
+                str.innerHTML = this.index + 1;
+                pCon.innerHTML = oArray[this.index];
+            }
+        }
+    }
+</script>
+</body>
+</html>

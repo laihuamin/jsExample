@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义右键菜单</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        ul{
+            width: 100px;
+            position: absolute;
+        }
+        li{
+            line-height: 24px;
+            height: 24px;
+            display: flex;
+            cursor: pointer;
+        }
+        .active{
+            background: #999;
+            color: #fff;
+        }
+        em{
+            flex-basis: 24px;
+            background: #eaead7 url("../image/ico.png")no-repeat;
+            height: 100%;
+        }
+        a{
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+        .cut{
+            background-position: 0 0;
+        }
+        .copy{
+            background-position: 0 -24px;
+        }
+        .paste{
+            background-position: 0 -48px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><em class="cut"></em><a href="">剪切</a></li>
+    <li><em class="copy"></em><a href="">复制</a></li>
+    <li><em class="paste"></em><a href="">粘帖</a></li>
+</ul>
+<script>
+    window.onload = function () {
+        var isUl = document.getElementsByTagName("ul")[0];
+        var isCon = document.getElementsByTagName("li");
+        isUl.style.display = "none";
+        document.oncontextmenu = function (event) {
+            var isEvent = event || window.event;
+            var style = isUl.style;
+            style.display = "block";
+            style.top = isEvent.clientY + "px";
+            style.left = isEvent.clientX + "px";
+            return false;
+        };
+        for (var i = 0; i < isCon.length; i++){
+            isCon[i].onmouseover = function () {
+                this.className = "active";
+            };
+            isCon[i].onmouseout = function () {
+                this.className = "";
+            }
+        }
+    }
+</script>
+</body>
+</html>

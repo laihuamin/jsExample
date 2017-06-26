@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1) 完美拖拽</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -100px 0 0 -150px;
+            border: 2px solid black;
+        }
+        h1{
+            text-align: right;
+            height: 30px;
+            border-bottom: 2px solid black;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        a{
+            cursor: pointer;
+        }
+        ul{
+            padding: 20px;
+        }
+        li{
+            line-height: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h1><a>点击可回放拖拽轨迹</a></h1>
+    <ul>
+        <li>Drag:false</li>
+        <li>offsetTop:</li>
+        <li>offsetLeft:</li>
+    </ul>
+</div>
+<script>
+    window.onload = function () {
+        var isBox = document.getElementsByClassName("wrap")[0];
+        var isBack = document.getElementsByTagName("a")[0];
+        var isCon = document.getElementsByTagName("li");
+        var drag = false,isNum = [],time = null;
+        isCon[1].innerHTML = "offsetTop:" + isBox.offsetTop;
+        isCon[2].innerHTML = "offsetLeft:" + isBox.offsetLeft;
+        isBox.onmousedown = function () {
+            drag = true;
+            isCon[0].innerHTML = "Drag:" + drag;
+        };
+        document.onmouseup = window.onblur = isBox.onlosecapture = function () {
+            drag = false;
+            isCon[0].innerHTML = "Drag:" + drag;
+        };
+        document.onmousemove = function (event) {
+            //不拖拽时事件不触发
+            if (!drag) {return false;}
+            // 获取视口属性值
+            var isEvent = event || window.event;
+            var boxLeft = isEvent.clientX;
+            var boxTop = isEvent.clientY;
+            var rightLimit = document.documentElement.clientWidth - isBox.offsetWidth;
+            var bottomLimit = document.documentElement.clientHeight - isBox.offsetHeight;
+            //拖拽并限制宽高
+            isBox.style.left = boxLeft + 150 + 'px';
+            (rightLimit <= isBox.offsetLeft) && (isBox.style.left = rightLimit + 150 + 'px');
+            (isBox.offsetLeft <= 0) && (isBox.style.left = boxLeft + 150 + 'px');
+            isBox.style.top = boxTop + 100 + 'px';
+            (bottomLimit <= isBox.offsetTop) && (isBox.style.top = bottomLimit + 100 + 'px');
+            (isBox.offsetTop <= 0) && (isBox.style.top = 100 + 'px');
+            //输出宽高，并计入宽高
+            isCon[1].innerHTML = "offsetTop:" + isBox.offsetTop;
+            isCon[2].innerHTML = "offsetLeft:" + isBox.offsetLeft;
+            isNum.push([isBox.offsetTop,isBox.offsetLeft]);
+            return false
+        };
+        //拖拽回放
+        isBack.onclick = function () {
+          clearInterval(time);
+          time = setInterval(function () {
+             var num = isNum.pop();
+              if (isNum.length >= 1) {
+                  isBox.style.top = num[0] + 100 + 'px';
+                  isBox.style.left = num[1] + 150 + 'px';
+                  isCon[1].innerHTML = "offsetTop:" + isBox.offsetTop;
+                  isCon[2].innerHTML = "offsetLeft:" + isBox.offsetLeft;
+              }else {
+                  clearInterval(time);
+              }
+          }, 30);
+        }
+    }
+</script>
+</body>
+</html>

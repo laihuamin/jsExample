@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单一按钮显示/隐藏一播放列表收缩展开</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .wrap{
+            width: 250px;
+            margin: 10px auto;
+            border: 1px solid #ced3d7;
+        }
+        .nav{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            background: #ced3d7;
+            cursor: pointer;
+            color: #6b7980;
+            border: 1px solid white;
+        }
+        .nav>span{
+            flex: 1;
+            font-size: 14px;
+        }
+        ul>li>a{
+            display: block;
+            font-size: 14px;
+            line-height: 30px;
+            background: #e9edf2;
+            padding: 0 10px;
+            color: #6b7980;
+        }
+        ul>li>a:hover{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h2 class="nav"><span>播放列表</span><i class="fa fa-caret-up"></i><i class="fa fa-caret-down" style="display: none;"></i></h2>
+    <ul style="display: none;">
+        <li><a href="#">玩家之徒 - 蔡依林</a></li>
+        <li><a href="#">原谅我就是这样的女生 - 戴佩妮</a></li>
+        <li><a href="#">猜不透 - 丁当</a></li>
+        <li><a href="#">自导自演 - 周杰伦</a></li>
+        <li><a href="#">浪漫窝 - 弦子</a></li>
+        <li><a href="#">流年 - 王菲</a></li>
+    </ul>
+</div>
+<script>
+    window.onload = function () {
+        var hTwo = document.getElementsByTagName("h2")[0];
+        var iS = hTwo.getElementsByTagName("i");
+        var oUl = document.getElementsByTagName("ul")[0];
+        var show = true;
+        hTwo.onclick = function () {
+            if (show) {
+                oUl.style.display = "block";
+                iS[0].style.display = "none";
+                iS[1].style.display = "block";
+            } else {
+                oUl.style.display = "none";
+                iS[0].style.display = "block";
+                iS[1].style.display = "none";
+            }
+            show = !show;
+        }
+    }
+</script>
+</body>
+</html>

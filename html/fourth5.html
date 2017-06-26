@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css函数一设置/读取对象的属性</title>
+    <style>
+        .box{
+            width:400px;
+            height:200px;
+            background:#fef4eb;
+            border:1px solid #f60;
+            margin:0 auto;
+        }
+        input {
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            background: #f60;
+            padding: 2px 4px;
+            margin: 10px 0 0 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box">
+    <input type="button" value="Get Style" />
+    <input type="button" value="Set Style" />
+    <input type="button" value="Default Style" />
+</div>
+<script type="text/javascript">
+    var getCss = function(o,key){
+        return o.currentStyle ? o.currentStyle[key] : document.defaultView.getComputedStyle(o,false)[key];
+    };
+    window.onload = function () {
+        var isBtn = document.getElementsByTagName("input");
+        var isBox = document.getElementsByClassName("box")[0];
+        isBtn[0].onclick = function () {
+            alert();
+        }
+    }
+</script>
+</body>
+</html>

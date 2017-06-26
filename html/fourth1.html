@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二级导航栏</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 960px;
+            margin: 10px auto;
+        }
+        ul{
+            display: flex;
+            text-align: center;
+        }
+        ul>li{
+            flex: 1;
+            position: relative;
+        }
+        .subnav{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 40px;
+        }
+        span{
+            display: flex;
+        }
+        span>a{
+            flex: 1;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li><a href="">站长之家</a></li>
+        <li>
+            <a href="">行业资讯</a>
+            <div class="subnav" style="display: block;">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">业界动态</a>|
+                        <a href="">收购融资</a>|
+                        <a href="">门户动态</a>|
+                        <a href="">搜索引擎</a>|
+                        <a href="">网络游戏</a>|
+                        <a href="">电子商务</a>|
+                        <a href="">广告传媒</a>|
+                        <a href="">厂商开发</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">站长在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">站长报道</a>|
+                        <a href="">好站推荐</a>|
+                        <a href="">站长聚会</a>|
+                        <a href="">站长访谈</a>|
+                        <a href="">站长茶馆</a>|
+                        <a href="">网站排行</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">网站运营</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">建站经验</a>|
+                        <a href="">策划盈利</a>|
+                        <a href="">搜索优化</a>|
+                        <a href="">网站推广</a>|
+                        <a href="">免费资源</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">设计在线</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">酷站推荐</a>|
+                        <a href="">网页设计</a>|
+                        <a href="">WEB标准</a>|
+                        <a href="">视频处理</a>|
+                        <a href="">设计活动</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">网络编程</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">Asp编程</a>|
+                        <a href="">Php编程</a>|
+                        <a href="">.Net编程</a>|
+                        <a href="">Xml编程</a>|
+                        <a href="">Access</a>|
+                        <a href="">Mssql</a>|
+                        <a href="">Mysql</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">联盟资讯</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">联盟动态</a>|
+                        <a href="">联盟介绍</a>|
+                        <a href="">联盟点评</a>|
+                        <a href="">网赚技巧</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+        <li>
+            <a href="">服务器</a>
+            <div class="subnav">
+                <em class="arrow"></em>
+                <p>
+                    <span>
+                        <a href="">Web服务器</a>|
+                        <a href="">Ftp服务器</a>|
+                        <a href="">Mail服务器</a>|
+                        <a href="">Dns服务器</a>|
+                        <a href="">Win服务器</a>|
+                        <a href="">Linux服务器</a>|
+                        <a href="">安全防护</a>|
+                        <a href="">虚拟主机</a>
+                    </span>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    window.onload = function () {
+        var liS = document.getElementsByTagName("li");
+        var subNav = document.getElementsByClassName("subnav");
+        for (var i = 0;i < liS.length;i++) {
+            liS[i].
+        }
+    }
+</script>
+</body>
+</html>

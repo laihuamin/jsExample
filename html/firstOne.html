@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制DIV属性</title>
+    <style type="text/css" rel="stylesheet">
+    .button-group{
+        width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .button-group button{
+        cursor: pointer;
+    }
+    .content{
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        margin: 10px auto;
+    }
+    </style>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+<div class="button-group">
+    <button class="btn">变宽</button>
+    <button class="btn">变高</button>
+    <button class="btn">变色</button>
+    <button class="btn">隐藏</button>
+    <button class="btn">重置</button>
+    <div id="content" class="content"></div>
+    <script type="text/javascript">
+        function changeAttr(elem, attr, sty) {
+            elem.style[attr] = sty;
+        }
+        window.onload = function () {
+            var content = document.getElementById('content');
+            var btns = document.getElementsByClassName("btn");
+            var styles = ["200px", "200px", "red", "none", "block"];
+            var attrs = ["width", "height", "background", "display", "display"];
+//            function changeDisplay(attr, dpy) {
+//            }
+            for( var i = 0; i < btns.length; i++){
+                btns[i].index = i;
+                btns[i].onclick = function () {
+                    this.index === btns.length - 1 && (content.style.cssText = "");
+                    changeAttr(content, attrs[this.index], styles[this.index]);
+                }
+            }
+        }
+
+//            function changeHeight() {
+//                content.className
+//            }
+//            function changeColor() {
+//
+//            }
+//            function hide() {
+//
+//            }
+//            function reset() {
+//
+//            }
+    </script>
+</div>
+</body>
+</html>

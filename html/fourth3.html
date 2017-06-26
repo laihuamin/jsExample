@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动播放一幻灯片效果</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 490px;
+            height: 170px;
+            overflow: hidden;
+            border: 10px solid #666666;
+            border-radius: 5px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -86px 0 0 -251px ;
+        }
+        .content{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .btn-group{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            width: 120px;
+            justify-content: space-between;
+        }
+        button{
+            flex-basis: 20px;
+            height: 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background:#F90;
+            opacity:0.7;
+            filter:alpha(opacity=70);
+            color: white;
+        }
+        .current{
+            font-weight:700;
+            background:#f60;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="content">
+        <img src="../image/01.jpg" style="opacity: 1;" />
+        <img src="../image/02.jpg" />
+        <img src="../image/03.jpg" />
+        <img src="../image/04.jpg" />
+        <img src="../image/05.jpg" />
+        <div class="btn-group">
+            <button class="current">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var imgS = document.getElementsByTagName("img");
+        var btnS = document.getElementsByTagName("button");
+        var box = document.getElementsByClassName("wrap")[0];
+        var timer,play = null;
+        var index = 0;
+        var bOrder = true;
+        for (var i = 0; i < btnS.length; i++) {
+            btnS[i].index = i;
+            btnS[i].onmouseover = function () {
+                showImg(this.index);
+            }
+        }
+        //鼠标划过，关闭计时器
+        box.onmouseover = function () {
+            clearInterval(play);
+        };
+        //鼠标离开开启计时器
+        box.onmouseout = function () {
+            autoPlay()
+        };
+        function autoPlay() {
+            play = setInterval(function () {
+                bOrder ? index++ : index--;
+                index >= imgS.length && (index = imgS.length - 2, bOrder = false);
+                index <= 0 && (index = 0, bOrder = true);
+                showImg(index);
+            },2000);
+        }
+        autoPlay();
+        function showImg(a) {
+            index = a;
+            var alpha = 0;
+            for (var n = 0;n < btnS.length;n++){
+                btnS[n].className = "";
+            }
+            btnS[index].className = "current";
+            clearInterval(timer);
+            for (i = 0; i < imgS.length; i++)
+            {
+                imgS[i].style.opacity = 0;
+                imgS[i].style.filter = "alpha(opacity=0)";
+            }
+            timer = setInterval(function () {
+                alpha += 2;
+                alpha > 100 && (alpha =100);
+                imgS[index].style.opacity = alpha / 100;
+                imgS[index].style.filter = "alpha(opacity = " + alpha + ")";
+                alpha === 100 && clearInterval(timer)
+            },20);
+        }
+    }
+</script>
+</body>
+</html>

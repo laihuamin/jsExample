@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>当前输入框高亮显示</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 300px;
+            margin: 0 auto;
+            border: 2px solid black;
+        }
+        h1{
+            font-size: 14px;
+            padding: 10px;
+            border-bottom: 2px solid black;
+        }
+        label{
+            display: block;
+            padding: 10px 40px 10px 10px;
+            font-size: 14px;
+            text-align: right;
+        }
+        button{
+            display: block;
+            margin: 0 auto;
+        }
+        .current{
+            background: #ffe7e7;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h1>用户登陆</h1>
+    <label>
+        <span>用户名:</span>
+        <input type="text" />
+    </label>
+    <label>
+        <span>密码:</span>
+        <input type="text" />
+    </label>
+    <button>登陆</button>
+</div>
+<script>
+    window.onload = function () {
+        var inputS = document.getElementsByTagName("input");
+        for (var i = 0; i < inputS.length; i++) {
+            inputS[i].addEventListener("focus",function () {
+                this.className = "current";
+            });
+            inputS[i].addEventListener("blur",function () {
+                this.className = "";
+            })
+        }
+    }
+</script>
+</body>
+</html>

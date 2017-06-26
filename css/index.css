@@ -1,0 +1,35 @@
+
+.g-wrap{
+    width: 360px;
+    height: auto;
+    margin: 10px auto;
+    border: 10px solid #eeeeee;
+    padding: 5px;
+}
+.g-wrap .g-title{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #99cc00;
+    color: white;
+    margin: 5px;
+}
+.g-content .m-nav>li{
+    margin: 5px;
+}
+.m-nav .nav-title{
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background-color: #99cc00;
+    padding-left: 10px;
+}
+.m-nav .u-nav>li{
+    background-color: #77ccff;
+    margin: 2px 0;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.m-nav .u-nav>li>a{
+    color: white;
+}

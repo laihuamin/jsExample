@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用parseInt解析数字，并求和</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <label>
+        <input type="text" />
+    </label>
+    <span class="add">+</span>
+    <label>
+        <input type="text" />
+    </label>
+    <span class="equal">=</span>
+    <span class="result">?</span>
+    <button>求和</button>
+</div>
+<script>
+    window.onload = function () {
+        var inputS = document.getElementsByTagName("input");
+        var btn = document.getElementsByTagName("button")[0];
+        var res = document.getElementsByClassName("result")[0];
+        btn.onclick = function () {
+            res.innerHTML = parseInt(inputS[0].value) + parseInt(inputS[1].value);
+        };
+        //判断输入是否为空，如果为空，置为？
+        function isNum() {
+            if (inputS[0].value === "" || inputS[1].value === "") {
+                res.innerHTML = "?";
+            }
+        }
+        inputS[0].addEventListener("blur", isNum);
+        inputS[1].addEventListener("blur", isNum);
+    }
+</script>
+</body>
+</html>
