@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移过，修改图片路径</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        body{
+            background: black;
+        }
+        .wrap{
+            width: 222px;
+            border: 5px solid white;
+            margin: 10px auto;
+            background: white;
+        }
+        ul{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            background: black;
+            padding: 5px;
+        }
+        ul>li{
+            justify-self: center;
+            align-self: center;
+        }
+        .item-1{
+            grid-column: 1/4;
+            grid-row: 1/4;
+        }
+        .item-2{
+            grid-row: 1/2;
+        }
+        .item-3{
+            grid-row: 2/3;
+        }
+        .item-4{
+            grid-row: 3/4;
+        }
+        .loading{
+            background: url("../image/loading.gif");
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li class="item-1"><img src="../image/big_1.jpg"><div class="loading"></div></li>
+        <li class="item-2"><a href="#"><img src="../image/small_1.jpg"></a></li>
+        <li class="item-3"><a href="#"><img src="../image/small_2.jpg"></a></li>
+        <li class="item-4"><a href="#"><img src="../image/small_3.jpg"></a></li>
+        <li class="item-5"><a href="#"><img src="../image/small_4.jpg"></a></li>
+        <li class="item-6"><a href="#"><img src="../image/small_5.jpg"></a></li>
+        <li class="item-7"><a href="#"><img src="../image/small_6.jpg"></a></li>
+        <li class="item-8"><a href="#"><img src="../image/small_7.jpg"></a></li>
+        <li class="item-9"><a href="#"><img src="../image/small_8.jpg"></a></li>
+        <li class="item-10"><a href="#"><img src="../image/small_9.jpg"></a></li>
+        <li class="item-11"><a href="#"><img src="../image/small_10.jpg"></a></li>
+        <li class="item-12"><a href="#"><img src="../image/small_11.jpg"></a></li>
+    </ul>
+</div>
+<script>
+    window.onload = function () {
+        var liS = document.getElementsByTagName("li");
+        var imgS = document.getElementsByTagName("img");
+        var oDiv = document.getElementsByTagName("div")[1];
+        for (var i = 1; i < imgS.length; i++) {
+            imgS[i].index = i;
+            imgS[i].onmouseover = function () {
+                var img = new Image();
+                img.src = imgS[0].src = this.src.replace(/small/, "big");
+                oDiv.style.display = "block";
+                img.complete ? oDiv.style.display = "none" : (imgS[0].onload = function() {
+                    oDiv.style.display = "none"
+                });
+            }
+        }
+    }
+</script>
+</body>
+</html>

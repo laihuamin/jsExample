@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移入/移出改变样式</title>
+    <style>
+        .block{
+            width: 200px;
+            height: 200px;
+            background: black;
+            padding: 10px;
+            color: white;
+            border: 10px solid black;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">鼠标移入改变样式，鼠标移出恢复</div>
+<script>
+    window.onload = function () {
+        var blocks = document.getElementsByClassName("block");
+        blocks[0].onmouseover = function () {
+            this.style.background = "white";
+            this.style.borderColor = "red";
+            this.style.color = "red";
+        };
+        blocks[0].onmouseout = function () {
+            this.style = "";
+        }
+    }
+</script>
+</body>
+</html>

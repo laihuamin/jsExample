@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>累加按钮，自加1</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 10px auto;
+            text-align: center;
+        }
+        button{
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <button>0</button>
+</div>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    var n = 0;
+    btn.onclick = function () {
+        n++;
+        btn.innerHTML = n;
+    }
+</script>
+</body>
+</html>

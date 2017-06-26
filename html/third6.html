@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断数字是否为几位数</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <label>
+        <input type="text" />
+    </label>
+    <button>判断几位数</button>
+</div>
+<script>
+    window.onload = function () {
+        var inputS = document.getElementsByTagName("input")[0];
+        var btn = document.getElementsByTagName("button")[0];
+        //设定只能输入数值
+        inputS.onkeyup = function () {
+            this.value = this.value.replace(/[^\d]/, "");
+        };
+        btn.onclick = function () {
+            if (inputS.value === "") {
+                alert("请输入数字")
+            } else {
+                alert("这是"+ inputS.value.length + "位数");
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度输入法</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 100px;
+            margin: 0 auto;
+        }
+        ul{
+            border: 1px solid blue;
+            width: 60px;
+        }
+        ul>li{
+            padding: 5px;
+            font-size: 14px;
+            color: blue;
+        }
+        ul>li:hover{
+            background: #d9e1f6;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <button>输入法</button>
+    <ul style="display: none;margin-top: 10px;">
+        <li>手写</li>
+        <li>拼音</li>
+        <li style="border-top: 1px solid blue">关闭</li>
+    </ul>
+</div>
+<script>
+    window.onload = function () {
+        var btns = document.getElementsByTagName("button");
+        var lis = document.getElementsByTagName("li");
+        var uls = document.getElementsByTagName("ul");
+        btns[0].onclick = function () {
+            if( uls[0].style.display === "none") {
+                uls[0].style.display = "block";
+            }else {
+                uls[0].style.display = "none";
+            }
+        };
+        lis[2].onclick = function () {
+            uls[0].style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

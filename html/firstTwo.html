@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页换肤</title>
+    <style type="text/css">
+    .wrap{
+        width: 500px;
+        margin: 0 auto;
+    }
+        button{
+            width: 10px;
+            height: 10px;
+            box-sizing: content-box;
+        }
+        #red{
+            border: 4px solid red;
+            background: red;
+        }
+        #green{
+            border: 4px solid green;
+            background: green;
+        }
+        #black{
+            border: 4px solid black;
+            background: black;
+        }
+        .nav{
+            display: flex;
+            width: 100%;
+            height: auto;
+        }
+        .nav>li{
+            flex: 1;
+            height: 25px;
+            text-align: center;
+            border: 1px solid white;
+        }
+        .nav>li>a{
+            font-size: 14px;
+            line-height: 25px;
+            color: white;
+        }
+        .active{
+            background: white !important;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/red.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="btn-group">
+            <button id="red" class="active"></button>
+            <button id="green"></button>
+            <button id="black"></button>
+        </div>
+        <ul class="nav">
+            <li><a href="#">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="#">体育</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">旅游</a></li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function () {
+            var btns = document.getElementsByTagName("button");
+            var links = document.getElementsByTagName("link");
+            for(var i = 0; i < btns.length; i++) {
+                btns[i].onclick = function () {
+                    for(item in btns){
+                        btns[item].className = "";
+                    }
+                    this.className = "active";
+                    links[1].href = "../css/" + this.id + ".css";
+                }
+            }
+//            var btns = document.getElementsByClassName("btn");
+//            var sty = ["red", "green", "black"];
+//            //遍历颜色
+//            for (var i = 0; i < btns.length; i++) {
+//                btns[i].style.background = sty[i];
+//                btns[i].style.borderColor = sty[i];
+//                btns[i].style.width = 6 + 'px';
+//                btns[i].style.height = 6 + 'px';
+//            }
+        }
+    </script>
+</body>
+</html>

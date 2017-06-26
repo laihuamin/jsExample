@@ -1,0 +1,12 @@
+*{  margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+a:link,a:visited{text-decoration:none;}
+a:hover{text-decoration: underline;}

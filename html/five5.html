@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随鼠标移动（大图展示）</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            display: flex;
+            margin: 10px auto;
+            width: 800px;
+            justify-content: space-between;
+        }
+        .wrap>img{
+            flex-basis: 170px;
+            border: 1px solid #666666;
+        }
+        .big{
+            position: absolute;
+            display: none;
+        }
+        .wrap>.active{
+            !important;border: 1px solid red;
+        }
+        .big>div{
+            background:#fff url(../image/loading.gif) 50% 50% no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <img src="../image/shirt_1.jpg" />
+    <img src="../image/shirt_2.jpg" />
+    <img src="../image/shirt_3.jpg" />
+    <img src="../image/shirt_4.jpg" />
+    <div class="big"><img src="" /><div></div></div>
+</div>
+<script>
+    window.onload = function () {
+        var isImg = document.getElementsByTagName("img");
+        var isCon = document.getElementsByClassName("big")[0];
+        var isLoading = isCon.getElementsByTagName("div")[0];
+        for (var i = 0; i < isImg.length - 1; i++) {
+            isImg[i].index = i;
+            isImg[i].onmouseover = function (event) {
+                isCon.style.display =  "block";
+                isImg[4].src = "../image/shirt_" + (this.index + 1) + "_big.jpg";
+                this.className = "active";
+                isImg[4].complete ? isLoading.style.display = "none" : isImg.onload = function () {
+                    isLoading.style.display = "block";
+                }
+            };
+            isImg[i].onmouseout = function () {
+                isCon.style.display = "none";
+                isImg[4].src = "";
+                this.className = "";
+            };
+            isImg[i].onmousemove = function (event) {
+                var isEvent = event || window.event;
+                var isWidth = document.documentElement.offsetWidth - isEvent.clientX;
+                console.log(isWidth);
+                isCon.style.left = isWidth > isEvent.clientX ? isEvent.clientX + 20 + "px" : isEvent.clientX - isCon.offsetWidth - 20 + "px";
+                isCon.style.top = isEvent.clientY + 20 + "px";
+            }
+        }
+    }
+</script>
+</body>
+</html>

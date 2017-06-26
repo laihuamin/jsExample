@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div闪烁</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            color: white;
+            background: red;
+            left: 50%;
+            top: 50%;
+            margin: -100px 0 0 -100px;
+            text-align: center;
+            line-height: 200px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    点击我闪烁
+</div>
+<script>
+    window.onload = function () {
+        var isCon = document.getElementsByClassName("wrap")[0];
+        var time = null;
+        isCon.onclick = function () {
+            var i = 0;
+            clearInterval(time);
+            time = setInterval(function () {
+                isCon.style.display = i++ % 2 ? "none" : "block";
+                i > 6 && clearInterval(time);
+            },100);
+        }
+    }
+</script>
+</body>
+</html>

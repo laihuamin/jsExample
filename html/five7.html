@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用键盘控制Div</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        pre{
+            background: #f0f0f0;
+            border: 1px dotted black;
+            width: 100%;
+            color: green;
+            line-height: 30px;
+            padding: 15px;
+        }
+        .box{
+            width: 150px;
+            height: 150px;
+            background: red;
+            position: absolute;
+            left: 200px;
+            top: 75px;
+        }
+    </style>
+</head>
+<body>
+<pre>
+红色方块为键盘操作区域，您可以进行如下操作：
+上：↑ 下：↓ 左：← 右：→
+Ctrl + 1 : 背景变为绿色
+Ctrl + 2 : 背景变为蓝色
+Ctrl + 3 : 背景变为黑色
+Ctrl + ↑ : 放大
+Ctrl + ↓ : 缩小
+</pre>
+<div class="box"></div>
+<script>
+    window.onload = function () {
+        var isCon = document.getElementsByClassName("box")[0];
+        var bLeft = false, bRight = false,bTop = false, bDown = false, bCtrl = false;
+        document.onkeydown = function (event) {
+            var isEvent = event || window.event;
+            switch (isEvent.keyCode){
+                case 37:
+                    bLeft = true;
+                    break;
+                case 38:
+                    if (bCtrl){
+                        var oldWidth = isCon.offsetWidth;
+                        var oldHeight = isCon.offsetHeight;
+                        isCon.style.width = isCon.offsetWidth * 1.5 + 'px';
+                        isCon.style.height = isCon.offsetHeight * 1.5 + 'px';
+                        isCon.style.left = isCon.offsetLeft - (isCon.offsetWidth - oldWidth) / 2 + 'px';
+                        isCon.style.top = isCon.offsetTop - (isCon.offsetHeight - oldHeight) / 2 + 'px';
+                        break;
+                    }
+                    bTop = true;
+                    break;
+                case 39:
+                    bRight = true;
+                    break;
+                case 40:
+                    if (bCtrl){
+                        var widthOld = isCon.offsetWidth;
+                        var heightOld = isCon.offsetHeight;
+                        isCon.style.width = isCon.offsetWidth / 1.5 + 'px';
+                        isCon.style.height = isCon.offsetHeight / 1.5 + 'px';
+                        isCon.style.left = isCon.offsetLeft + ( widthOld - isCon.offsetWidth) / 2 + 'px';
+                        isCon.style.top = isCon.offsetTop + (heightOld - isCon.offsetHeight) / 2 + 'px';
+                        break;
+                    }
+                    bDown = true;
+                    break;
+                case 17:
+                    bCtrl = true;
+                    break;
+                case 49:
+                    if (bCtrl){
+                        isCon.style.background = "green";
+                    }
+                    break;
+                case 50:
+                    if (bCtrl){
+                        isCon.style.background = "blue";
+                    }
+                    break;
+                case 51:
+                    if (bCtrl){
+                        isCon.style.background = "black";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        };
+        document.onkeyup = function (event) {
+            var isEvent = event || window.event;
+            switch (isEvent.keyCode){
+                case 37:
+                    bLeft = false;
+                    break;
+                case 38:
+                    bTop = false;
+                    break;
+                case 39:
+                    bRight = false;
+                    break;
+                case 40:
+                    bDown = false;
+                    break;
+                case 17:
+                    bCtrl = false;
+                    break;
+                default:
+                    break;
+            }
+        };
+        setInterval(function () {
+            if (bLeft) {
+                isCon.style.left = isCon.offsetLeft - 10 + "px";
+            }else if (bRight) {
+                isCon.style.left = isCon.offsetLeft + 10 + "px";
+            }else if (bTop) {
+                isCon.style.top = isCon.offsetTop - 10 + "px";
+            }else if (bDown) {
+                isCon.style.top = isCon.offsetTop + 10 + "px";
+            }
+            limit();
+        },30);
+        function limit() {
+            var offset = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+            (isCon.offsetLeft <= 0) && (isCon.style.left = 0);
+            (isCon.offsetTop <= 0) && (isCon.style.top = 0);
+            (offset[0] - isCon.offsetLeft - isCon.offsetWidth <= 0) && (isCon.style.left = offset[0] - isCon.offsetWidth + 'px');
+            (offset[1] - isCon.offsetTop - isCon.offsetHeight <= 0) && (isCon.style.top = offset[1] - isCon.offsetHeight + 'px');
+        }
+    }
+</script>
+</body>
+</html>

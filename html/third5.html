@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面加载后累加，自加1</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 100px;
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <span>0</span>
+</div>
+<script>
+    window.onload = function () {
+        var con = document.getElementsByTagName("span")[0];
+        var i = 0;
+        setInterval(addNum, 1000);
+        addNum();
+        function addNum() {
+            con.innerHTML = ++i;
+        }
+    }
+</script>
+</body>
+</html>

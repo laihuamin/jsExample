@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页计算器</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 400px;
+            margin: 10px auto;
+        }
+        .top{
+            width: 100%;
+            height: 20px;
+            background: black;
+        }
+        .content{
+            width: 100%;
+            background: url(../image/inputBg.jpg)repeat-x;
+        }
+        .tips{
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: right;
+            margin: 0 10px;
+        }
+        .entry{
+            height: 60px;
+            line-height: 60px;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: right;
+            margin: 0 10px;
+        }
+        .btn-group{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding: 10px;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+            grid-column-gap: 20px;
+            grid-row-gap: 15px;
+            background: url(../image/bg.jpg)repeat;
+        }
+        button{
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid #666666;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #666666;
+        }
+        .btn-17{
+            grid-column: 1/3;
+            width: 100%;
+        }
+        .btn-16{
+            height: 100%;
+            grid-column: 4;
+            grid-row: 4/6;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="top"></div>
+    <div class="content">
+        <p class="tips"></p>
+        <p class="entry">0</p>
+    </div>
+    <div class="bottom">
+        <div class="btn-group">
+            <button class="btn-1">C</button>
+            <button class="btn-2">%</button>
+            <button class="btn-3">÷</button>
+            <button class="btn-4">×</button>
+            <button class="btn-5">7</button>
+            <button class="btn-6">8</button>
+            <button class="btn-7">9</button>
+            <button class="btn-8">-</button>
+            <button class="btn-9">4</button>
+            <button class="btn-10">5</button>
+            <button class="btn-11">6</button>
+            <button class="btn-12">+</button>
+            <button class="btn-13">1</button>
+            <button class="btn-14">2</button>
+            <button class="btn-15">3</button>
+            <button class="btn-16">=</button>
+            <button class="btn-17">0</button>
+            <button class="btn-18">.</button>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        //获取所以按钮的dom元素
+        var btns = document.getElementsByTagName("button");
+        //获取两个显示内容的dom元素
+        var cons = document.getElementsByTagName("p");
+        //按钮的功能
+        for (var i = 0;i < btns.length; i++){
+            btns[i].onclick = function () {
+                switch (this.innerHTML){
+                    case "C":
+                        cons[0].innerHTML = "";
+                        cons[1].innerHTML = "0";
+                        break;
+                    case "=":
+                        var res =count(cons[1].innerHTML);
+                        cons[0].innerHTML = cons[1].innerHTML;
+                        cons[1].innerHTML = res;
+                        break;
+                    default:
+                        if(cons[1].innerHTML === "0"){
+                            cons[1].innerHTML = this.innerHTML;
+                        }else {
+                            cons[1].innerHTML += this.innerHTML;
+                        }
+                        break;
+                }
+            }
+        }
+        function count(a) {
+            var nums = a.match(/[0-9]+\.?([0-9]+)?/g);
+            var signs = a.match(/[^\d|^\.]/g);
+            console.log(nums);
+            console.log(signs);
+            var res = parseFloat(nums[0]);
+            for (var i = 0;i < signs.length; i++) {
+                switch (signs[i]){
+                    case "%":
+                        res %= parseFloat(nums[i+1]);
+                        break;
+                    case "÷":
+                        res /= parseFloat(nums[i+1]);
+                        break;
+                    case "×":
+                        res *= parseFloat(nums[i+1]);
+                        break;
+                    case "-":
+                        res -= parseFloat(nums[i+1]);
+                        break;
+                    case "+":
+                        res += parseFloat(nums[i+1]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return res;
+        }
+    }
+</script>
+</body>
+</html>

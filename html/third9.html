@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易倒计时时钟</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 300px;
+            margin: 10px auto;
+            background: #1A1A1A;
+            text-align: center;
+            padding: 10px;
+        }
+        .entry{
+            display: block;
+            margin: 0 auto;
+        }
+        label{
+            line-height: 40px;
+        }
+        input{
+            width: 100px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        span{
+            color: white;
+        }
+        button{
+            border: none;
+            width: 283px;
+            height: 50px;
+            background: url("../image/btn-1.png")no-repeat;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <label class="entry">
+        <span>输入计时时间：</span>
+        <input type="text" />
+    </label>
+    <label>
+        <input type="text" />
+        <span>分</span>
+    </label>
+    <label>
+        <input type="text" />
+        <span>秒</span>
+    </label>
+    <button></button>
+</div>
+<script>
+    window.onload = function () {
+        var btn = document.getElementsByTagName("button")[0];
+        var inputS = document.getElementsByTagName("input");
+        btn.onclick = function () {
+            var num = inputS[0].value;
+            setInterval(timeChange,1000);
+            timeChange();
+            function timeChange() {
+                var a = num % 60;
+                var b = (num - a)/60;
+                inputS[1].value = format(b);
+                inputS[2].value = format(a);
+                num--;
+            }
+            function format(c) {
+                return c.toString().replace(/^(\d)$/,"0$1");
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数传参，改变Div任意属性的值</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        label{
+            display: block;
+            margin: 10px;
+        }
+        button{
+            margin-left: 10px;
+        }
+        .content{
+            width: 200px;
+            height: 200px;
+            color: white;
+            background: black;
+            margin: 5px auto;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <label>
+        <span>属性名：</span>
+        <input type="text" value="background"/>
+    </label>
+    <label>
+        <span>属性值：</span>
+        <input type="text" value="blue"/>
+    </label>
+    <button>确定</button>
+    <button>重置</button>
+    <p class="content">在上方输入“属性名”和“属性值”，点击确认按钮查看效果。</p>
+</div>
+<script>
+    function change(elem, attr, value) {
+        elem.style[attr] = value;
+    }
+    window.onload = function () {
+        var inputs = document.getElementsByTagName("input");
+        var btns = document.getElementsByTagName("button");
+        var cons = document.getElementsByClassName("content");
+        btns[0].onclick = function () {
+            change(cons[0], inputs[0].value, inputs[1].value);
+        };
+        btns[1].onclick = function () {
+            cons[0].style.cssText = " ";
+            console.log(cons[0].style)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件练习：封装兼容性添加、删除事件的函数</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .btn-group{
+            width: 300px;
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="btn-group">
+    <button>没用的按钮</button>
+    <button>绑定click</button>
+    <button>解除click</button>
+</div>
+<script>
+    window.onload = function () {
+        function event() {
+            alert("绑定了点击事件");
+        }
+        var isBtn = document.getElementsByTagName("button");
+        isBtn[1].addEventListener("click",function () {
+            isBtn[0].innerHTML = "点击查看点击事件";
+            isBtn[0].addEventListener("click",event);
+        });
+        isBtn[2].addEventListener("click",function () {
+            isBtn[0].innerHTML = "没用的按钮";
+            isBtn[0].removeEventListener("click",event);
+        })
+    }
+</script>
+</body>
+</html>

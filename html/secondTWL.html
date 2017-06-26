@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复选框（checkbox）全选/全不选/返选</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 10px auto;
+            font-size: 14px;
+        }
+        form{
+            margin: 0 auto;
+            width: 120px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        label{
+            display: block;
+            line-height: 30px;
+        }
+        label>input{
+            margin-right: 5px;
+        }
+        .oppo{
+            margin-left: 10px;
+            cursor: pointer;
+            color: #77ccff;
+        }
+        .oppo:hover{
+            color: #ff6699;
+        }
+        .title{
+            display: inline-block;
+        }
+        .tip{
+            margin: 10px auto;
+            text-align: center;
+        }
+        .border{
+            padding-top: 5px;
+            border-top: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <form>
+        <label class="title">
+            <input type="checkbox" value="" name="tab" /><strong><span>全选</span></strong>
+        </label>
+        <span class="oppo">反选</span>
+        <label class="border">
+            <input type="checkbox" value="" name="tab" /><span>选项（一）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（二）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（三）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（四）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（五）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（六）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（七）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（八）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（九）</span>
+        </label>
+        <label>
+            <input type="checkbox" value="" name="tab" /><span>选项（十）</span>
+        </label>
+    </form>
+    <div class="tip">
+        1、切换全选/全不选文字；2、根据选中个数更新全选框状态；
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var inputS = document.getElementsByTagName("input");
+        var spanS = document.getElementsByTagName("span");
+        var opposites = document.getElementsByClassName("oppo")[0];
+        function isChockAll() {
+            for (var i = 1 , n = 0; i < inputS.length; i++ ) {
+                inputS[i].checked && n++;
+            }
+            inputS[0].checked = (n === inputS.length - 1);
+            spanS[0].innerHTML= inputS[0].checked ? "全不选" : "全选";
+        }
+        function change(value) {
+            for(var i = 1;i < inputS.length;i++) {
+                inputS[i].checked = value;
+            }
+        }
+        //全选或全不选
+        inputS[0].onclick = function () {
+            if(this.checked){
+                change(true);
+            }else {
+                change(false);
+            }
+            isChockAll();
+        };
+        //反选
+        opposites.onclick = function () {
+            for (var i = 1; i < inputS.length; i++) {
+                inputS[i].checked = !inputS[i].checked;
+            }
+            isChockAll();
+        };
+        //元素的变化影响全选件
+        for (var i = 1; i < inputS.length; i++) {
+            inputS[i].onclick = function () {
+                isChockAll();
+            }
+        }
+    }
+</script>
+</body>
+</html>
